@@ -1,0 +1,70 @@
+/*		--- styles.css --- 			*/
+html {
+	outline: none;
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: 14px;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background-color: #ffe6e6;
+}
+
+aside {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 150px;
+	height: 500px;
+	background-color: #c4ebf2;
+}
+/* section-1 content */
+section#section-1 {
+	position: absolute;
+	display: inline-block;
+	top: 50px;
+	left: 150px;
+	width: 425px;
+	height: 500px;
+	background-color: #dfffe9;
+}
+
+.controls {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.display {
+	position: absolute;
+	top: 10px;
+	left: 150px;	
+}
+
+div#sequencer {
+	position: absolute;
+	top:100px;
+	left: 10px;
+}
+
+div#sequencer.sequencer {	
+	position: relative;
+	top:100px;
+	left: 10px;
+}
+
+section#section-2 {
+	position: relative;
+	top: 50px;
+	left: 575px;
+	width: 425px;
+	height: 500px;
+	background-color: #dffffb;
+}
