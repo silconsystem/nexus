@@ -19,11 +19,11 @@ var seq = new Tone.Sequence(function(time, note){
 //straight quater notes
 }, ["C4", "E4", "G4", "A4"], "4n");
 */
-
-// Create a pulse that does not autostart
-var interval = new Nexus.Interval(2000, function() {
-  console.log('beep');
-});
+// create counter value
+var counter = new Nexus.Counter(0,15);
+counter.min = 0;
+counter.max = 15;
+counter.value = 0;
 
 // note frequencies to test against
 // JSON tuning data
@@ -110,33 +110,64 @@ var sequencer = new Nexus.Sequencer('#sequencer',{
  'columns': 16
 });
 
-/* handler functions
-function getMatrixValues(sequencer) {
-	var i;
+// handler functions
+$.fn.getMatrixValues = function() {
 
-	for (i = 0; s)
-
-	sequencer.matrix.pattern[0]
-}
-*/
-
-sequencer.on('change',function(v) {
-
-	pattern = v;
-
-	return pattern;
-
-	/*
-	for (var i = 0;i >= sequencer.matrix.pattern[0].length; i++) {
-		row_1.push(sequencer.matrix.pattern[0][i]);
-		row_2.push(sequencer.matrix.pattern[1][i]);
-		row_3.push(sequencer.matrix.pattern[2][i]);
-		row_4.push(sequencer.matrix.pattern[3][i]);
-	}
+	// set variables for easy acces
+	row_1 = Object.values(sequencer.matrix.pattern[0]);
+	row_2 = Object.values(sequencer.matrix.pattern[1]);
+	row_3 = Object.values(sequencer.matrix.pattern[2]);
+	row_4 = Object.values(sequencer.matrix.pattern[3]);
 
   console.log('seq_1: ' + row_1 + "\n" +
   				'seq_2' + row_2 + "\n" +
   				'seq_3' + row_3 + "\n" +
   				'seq_4' + row_4);
-  return [row_1, row_2, row_3, row_4];*/
+}
+var seqValue = [],
+	note,
+	cell = [3];
+
+sequencer.on('step',function(v) {
+
+	var position = sequencer.stepper.value,
+		oct;
+
+	if (oscOneOct == 0) {
+		oct = "4";
+	} else if (oscOneOct == 1) {
+		oct = "5";
+	} else if (oscOneOct == -1) {
+		oct = "3";
+	}
+	seqValue = v;
+
+
+	for (var i = 0; i <= 3; i++)
+	if (seqValue[i] == 1) {
+		if (seqValue[3] == 1) {
+			note = "C" + oct;
+			console.log(note);
+		}
+		if (seqValue[2] == 1) {
+			note = "D" + oct;
+			console.log(note);
+		}
+		if (seqValue[1] == 1) {
+			note = "E" + oct;			
+			console.log(note);
+		}
+		if (seqValue[0] == 1) {
+			note = "F" + oct;
+			console.log(note);
+		}
+
+		console.log('match: ' + note + ' cellno: ' + position);
+	}
+
+	console.log('col: ' + v + ' count: ' + position);
+
+	if (position == 15) {
+		$.fn.getMatrixValues();
+	}
 });

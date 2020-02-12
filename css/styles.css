@@ -56,15 +56,37 @@ div#sequencer {
 
 div#sequencer.sequencer {	
 	position: relative;
-	top:100px;
+	top:120px;
+	left: 10px;
+}
+
+div#seq-io-one.seq-io-one {
+	position: relative;
+	top: 100px;
+	left: 10px;
+}
+
+div#scope-one {
+	position: relative;
+	top: 250px;
 	left: 10px;
 }
 
 section#section-2 {
 	position: relative;
-	top: 50px;
-	left: 575px;
+	padding: 0;
+	top: 38px;
+	left: 565px;
 	width: 425px;
 	height: 500px;
 	background-color: #dffffb;
+}
+
+section#section-2#piano {
+	position: relative;
+	height: 100px;
+	width: 400px;
+	top: 20px;	
+	left: 575px;
+	z-index: 2;
 }

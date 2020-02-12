@@ -3,7 +3,9 @@
 var ioOne 			= new Nexus.Toggle('#io-one'),
 	oscOneVolume 	= new Nexus.Slider('#gain-one'),
 	oscOneDetune	= new Nexus.Slider('#detune-one'),
-	oscOneOctave	= new Nexus.Slider('#octave-one');
+	oscOneOctave	= new Nexus.Slider('#octave-one'),
+	seqIoOne		= new Nexus.Toggle('#seq-io-one');
+
 
 // displays
 var io_1_Display	= $('#io-one-display'),
@@ -82,9 +84,23 @@ oscOneOctave.on('change', function(v) {
 	o_1_Oct_Display.html('oct: ' + oscOneOct);
 
 	console.log('oct: ' + oscOneOct);
+
+	return oscOneOct;
 	
 });
 oscOneOctave.min 	= -1;
 oscOneOctave.max 	= 1;
 oscOneOctave.value 	= 0;
 oscOneOctave.step 	= 1;
+
+// turn on sequencer
+seqIoOne.on('change', function(v) {
+
+	var stepVal;
+
+	// turn on sequencer
+	v ? sequencer.start(500) : sequencer.stop();	
+
+	console.log('seq run: ' + v);
+
+});
