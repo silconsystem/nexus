@@ -66,12 +66,18 @@ div#seq-io-one.seq-io-one {
 	left: 10px;
 }
 
+div#envelope-one {
+	position: relative;
+	top: 150px;
+	left: 10px;
+}
+/*
 div#scope-one {
 	position: relative;
 	top: 250px;
 	left: 10px;
 }
-
+*/
 section#section-2 {
 	position: relative;
 	padding: 0;
@@ -82,11 +88,11 @@ section#section-2 {
 	background-color: #dffffb;
 }
 
-section#section-2#piano {
-	position: relative;
+section#section-2 #piano {
+	position: absolute;
 	height: 100px;
 	width: 400px;
 	top: 20px;	
-	left: 575px;
+	left: 10px;
 	z-index: 2;
 }

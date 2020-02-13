@@ -126,7 +126,22 @@ $.fn.getMatrixValues = function() {
 }
 var seqValue = [],
 	note,
-	cell = [3];
+	cell = [3],
+	freq_1;
+
+$.fn.getNoteFrequency = function() {
+
+	for (var i = 0; i <= stdTuning.length; i++) {
+
+		if (stdTuning[i].Note == note) {
+			freq_1 = stdTuning[i].Frequency;
+
+			console.log('osc-1 freq: ' + freq_1);
+
+			return freq_1;
+		}
+	}
+}
 
 sequencer.on('step',function(v) {
 
@@ -147,18 +162,30 @@ sequencer.on('step',function(v) {
 	if (seqValue[i] == 1) {
 		if (seqValue[3] == 1) {
 			note = "C" + oct;
+			$.fn.getNoteFrequency();
+			oscOne.frequency.value = freq_1;
+			oscOne.start().stop("+0.5");
 			console.log(note);
 		}
 		if (seqValue[2] == 1) {
 			note = "D" + oct;
+			$.fn.getNoteFrequency();
+			oscOne.frequency.value = freq_1;
+			oscOne.start().stop("+0.5");
 			console.log(note);
 		}
 		if (seqValue[1] == 1) {
-			note = "E" + oct;			
+			note = "E" + oct;
+			$.fn.getNoteFrequency();
+			oscOne.frequency.value = freq_1;
+			oscOne.start().stop("+0.5");		
 			console.log(note);
 		}
 		if (seqValue[0] == 1) {
 			note = "F" + oct;
+			$.fn.getNoteFrequency();
+			oscOne.frequency.value = freq_1;
+			oscOne.start().stop("+0.5");
 			console.log(note);
 		}
 
