@@ -99,7 +99,11 @@ seqIoOne.on('change', function(v) {
 	var stepVal;
 
 	// turn on sequencer
-	v ? sequencer.start(500) : sequencer.stop();	
+	v ? sequencer.start(500) : sequencer.stop();
+	
+	/*if (sequencer.stop() == true) {
+		oscOne.stop();
+	}*/
 
 	console.log('seq run: ' + v);
 

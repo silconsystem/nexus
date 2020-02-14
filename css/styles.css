@@ -8,6 +8,10 @@ h1 {
 	font-size: 14px;
 }
 
+h2 {
+	font-size: 12px;
+}
+
 header {
 	position: absolute;
 	top: 0;
@@ -48,28 +52,34 @@ section#section-1 {
 	left: 150px;	
 }
 
-div#sequencer {
-	position: absolute;
-	top:100px;
-	left: 10px;
-}
-
-div#sequencer.sequencer {	
+div#sequencer {	
 	position: relative;
-	top:120px;
+	top:130px;
 	left: 10px;
 }
 
 div#seq-io-one.seq-io-one {
 	position: relative;
-	top: 100px;
+	top: 117px;
 	left: 10px;
 }
 
-div#envelope-one {
+h2#seq-io-one-txt.seq-io-one-txt {
+	position: relative;
+	left: 70px;
+	top: 90px;
+}
+
+div#adsr-one-ctrl {
 	position: relative;
 	top: 150px;
 	left: 10px;
+}
+
+div#env-display-1 {
+	position: relative;
+	top: 37px;
+	left: 150px;
 }
 /*
 div#scope-one {
