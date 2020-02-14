@@ -1,7 +1,6 @@
 /*          adsr.js             */
-//tone js amplitude envelope
-var envOne = new Tone.AmplitudeEnvelope();
 
+envOne = new Tone.AmplitudeEnvelope();
 // control elements
 var attack_1    = new Nexus.Slider("#attack-one"),
     decay_1     = new Nexus.Slider("#decay-one"),

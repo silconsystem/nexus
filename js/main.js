@@ -24,7 +24,7 @@ ioOne.on('change',function(v) {
 	var textValue;
 
 	// toggle on/off
-	v ? oscOne.start() : oscOne.stop();
+	v ? oscOne.triggerAttack() : oscOne.triggerRelease();
 
 	// create string for html display
 	if (ioOne.state == true) {

@@ -1,4 +1,11 @@
 /*			sequencer.js 			*/
+// sequencer
+var sequencer = new Nexus.Sequencer('#sequencer',{
+	'size': [350,80],
+	'mode': 'toggle',
+	'rows': 6,
+	'columns': 16
+});
 // ___GLOBALS
 var pattern,
 	row_1,
@@ -68,14 +75,6 @@ var	i, j;
 		"pythagoreanTuning freq: " + pythaTuningFreq[48] + " succesfully loaded" + "\n");
 }
 
-var sequencer = new Nexus.Sequencer('#sequencer',{
- 'size': [350,80],
- 'mode': 'toggle',
- 'rows': 4,
- 'columns': 16
-});
-
-
 var seqValue = [],
 	cell = [3],
 	freq_1,
@@ -112,8 +111,16 @@ sequencer.on('step',function(v) {
 	seqValue = v;
 
 
-	for (var i = 0; i <= 3; i++)
+	for (var i = 0; i <= 5; i++)
 	if (seqValue[i] == 1) {
+		if (seqValue[5] == 1) {
+			kick.start();
+			console.log('kick');
+		}
+		if (seqValue[4] == 1) {
+			hat.start();
+			console.log('hat');
+		}
 		if (seqValue[3] == 1) {
 			note_1 = "C" + oct;
 			$.fn.getNoteFrequency();

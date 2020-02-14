@@ -1,14 +1,35 @@
 /*				sound sources ToneJS 			*/
 // create a volume node
 var vol 		= new Tone.Volume(-Infinity),
-	oscOne 		= new Tone.MonoSynth();
-	//oscOneScope	= new Nexus.Oscilloscope('#scope-one'),
+	oscOne 		= new Tone.MonoSynth(),
 	piano 		= new Nexus.Piano('#piano',{
 	    'size': [400,100],
 	    'mode': 'button',  // 'button', 'toggle', or 'impulse'
 	    'lowNote': 24,
 	    'highNote': 60
-	});
+	}),
+	kick = new Tone.Player("../audio/808-kick_G_minor.wav", {
+		onload : Tone.noOp ,
+		playbackRate : 1 ,
+		loop : false ,
+		autostart : false ,
+		loopStart : 0 ,
+		loopEnd : 0 ,
+		reverse : false ,
+		fadeIn : 0 ,
+		fadeOut : 0
+	}).toMaster(),
+	hat = new Tone.Player("../audio/anm-hat_A_major.wav", {
+		onload : Tone.noOp ,
+		playbackRate : 1 ,
+		loop : false ,
+		autostart : false ,
+		loopStart : 0 ,
+		loopEnd : 0 ,
+		reverse : false ,
+		fadeIn : 0 ,
+		fadeOut : 0
+	}).toMaster();
 
 // display elements
 var piano_display = $('#piano-display');
@@ -47,8 +68,3 @@ piano.on('change',function(v) {
 
 // signal flow
 oscOne.connect(envOne).toMaster();
-//envOne.connect(vol);
-//envOne.connect(vol).toMaster();
-//oscOne.chain(vol, Tone.Master);
-//trigger the envelopes attack and release "8t" apart
-//envOne.triggerAttackRelease("8t");
