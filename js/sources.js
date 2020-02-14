@@ -1,7 +1,7 @@
 /*				sound sources ToneJS 			*/
 // create a volume node
 var vol 		= new Tone.Volume(-Infinity),
-	oscOne 		= new Tone.Oscillator();
+	oscOne 		= new Tone.MonoSynth();
 	//oscOneScope	= new Nexus.Oscilloscope('#scope-one'),
 	piano 		= new Nexus.Piano('#piano',{
 	    'size': [400,100],
@@ -10,8 +10,13 @@ var vol 		= new Tone.Volume(-Infinity),
 	    'highNote': 60
 	});
 
-var keyPlayed;
+// display elements
+var piano_display = $('#piano-display');
 
+var keyPlayed,
+	keyFrequency;
+
+// piano keyboard
 piano.on('change',function(v) {
 
 	var piano_key;
@@ -22,19 +27,27 @@ piano.on('change',function(v) {
 		
 		if (i == piano_key.note) {
 
-			keyPlayed 	= stdTuning[i].Note;
+			keyPlayed 		= stdTuning[i].Note;
+			keyFrequency	= stdTuning[i].Frequency;
 
-			console.log('key played: ' + keyPlayed);
+			piano_display.html('note: ' + keyPlayed
+								+ " frequency: " + keyFrequency);
+
+			console.log('note and frequency: ' + keyPlayed + " & " + keyFrequency);
+			oscOne.frequency.value = parseFloat(keyFrequency);
+			
 		}
 	}
-
-  console.log(v);
+	oscOne.triggerAttackRelease(keyPlayed, "8n");
+	//oscOne.start().stop("+0.5");
+  	console.log(v);
 });
 
 //Nexus.context = Tone.context;
 
 // signal flow
-oscOne.connect(envOne).connect(vol).toMaster();
+oscOne.connect(envOne).toMaster();
+//envOne.connect(vol);
 //envOne.connect(vol).toMaster();
 //oscOne.chain(vol, Tone.Master);
 //trigger the envelopes attack and release "8t" apart

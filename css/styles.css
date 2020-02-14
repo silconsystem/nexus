@@ -106,3 +106,9 @@ section#section-2 #piano {
 	left: 10px;
 	z-index: 2;
 }
+
+div#piano-display {
+	position: absolute;
+	top: 130px;
+	left: 10px;
+}

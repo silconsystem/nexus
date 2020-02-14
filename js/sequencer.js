@@ -68,41 +68,6 @@ var	i, j;
 		"pythagoreanTuning freq: " + pythaTuningFreq[48] + " succesfully loaded" + "\n");
 }
 
-/*
-
-$.fn.setOctave = function() {
-
-	// get value from octave range and set array of notes to use
-	switch (oscOneOct) {
-
-		// fill activeNoteValue & activeNoteValue
-		case "0":
-			o1_Freq.min 	= midFreq[0];
-			o1_Freq.max 	= midFreq[11];
-			activeFreqValue = midFreq;
-			activeNoteValue = midOctave;
-
-			break;
-
-		case "1":
-			o1_Freq.min 	= highFreq[0];
-			o1_Freq.max 	= highFreq[11];
-			activeFreqValue = highFreq;
-			activeNoteValue = highOctave;
-
-			break;
-
-		case "-1":
-			o1_Freq.min 	= lowFreq[0];
-			o1_Freq.max 	= lowFreq[11];
-			activeFreqValue = lowFreq;
-			activeNoteValue = lowOctave;		
-			
-			break;
-	}
-	//console.log('frequency values set from: ' + activeFreqValue[0] + 'to: ' + activeFreqValue[11]);
-}*/
-
 var sequencer = new Nexus.Sequencer('#sequencer',{
  'size': [350,80],
  'mode': 'toggle',
@@ -110,35 +75,24 @@ var sequencer = new Nexus.Sequencer('#sequencer',{
  'columns': 16
 });
 
-// handler functions
-$.fn.getMatrixValues = function() {
 
-	// set variables for easy acces
-	row_1 = Object.values(sequencer.matrix.pattern[0]);
-	row_2 = Object.values(sequencer.matrix.pattern[1]);
-	row_3 = Object.values(sequencer.matrix.pattern[2]);
-	row_4 = Object.values(sequencer.matrix.pattern[3]);
-
-  console.log('seq_1: ' + row_1 + "\n" +
-  				'seq_2' + row_2 + "\n" +
-  				'seq_3' + row_3 + "\n" +
-  				'seq_4' + row_4);
-}
 var seqValue = [],
-	note,
 	cell = [3],
-	freq_1;
+	freq_1,
+	note_1;
 
 $.fn.getNoteFrequency = function() {
 
 	for (var i = 0; i <= stdTuning.length; i++) {
 
-		if (stdTuning[i].Note == note) {
-			freq_1 = stdTuning[i].Frequency;
+		if (stdTuning[i].Note == note_1) {
+			freq_1 = parseFloat(stdTuning[i].Frequency);
+			note_1 = stdTuning[i].Note;
 
-			console.log('osc-1 freq: ' + freq_1);
+			console.log('osc-1 freq: ' + freq_1 + "\n"
+						+ 'osc-1 note: ' + note_1);
 
-			return freq_1;
+			return [freq_1, note_1];
 		}
 	}
 }
@@ -161,40 +115,32 @@ sequencer.on('step',function(v) {
 	for (var i = 0; i <= 3; i++)
 	if (seqValue[i] == 1) {
 		if (seqValue[3] == 1) {
-			note = "C" + oct;
+			note_1 = "C" + oct;
 			$.fn.getNoteFrequency();
-			oscOne.frequency.value = freq_1;
-			oscOne.start().stop("+0.5");
-			console.log(note);
+			oscOne.triggerAttackRelease(note_1, "16n");
+			console.log(note_1);
 		}
 		if (seqValue[2] == 1) {
-			note = "D" + oct;
+			note_1 = "D" + oct;
 			$.fn.getNoteFrequency();
-			oscOne.frequency.value = freq_1;
-			oscOne.start().stop("+0.5");
-			console.log(note);
+			oscOne.triggerAttackRelease(note_1, "16n");
+			console.log(note_1);
 		}
 		if (seqValue[1] == 1) {
-			note = "E" + oct;
+			note_1 = "E" + oct;
 			$.fn.getNoteFrequency();
-			oscOne.frequency.value = freq_1;
-			oscOne.start().stop("+0.5");		
-			console.log(note);
+			oscOne.triggerAttackRelease(note_1, "16n");		
+			console.log(note_1);
 		}
 		if (seqValue[0] == 1) {
-			note = "F" + oct;
+			note_1 = "F" + oct;
 			$.fn.getNoteFrequency();
-			oscOne.frequency.value = freq_1;
-			oscOne.start().stop("+0.5");
-			console.log(note);
+			oscOne.triggerAttackRelease(note_1, "16n");
+			console.log(note_1);
 		}
 
-		console.log('match: ' + note + ' cellno: ' + position);
+		console.log('match: ' + note_1 + ' cellno: ' + position);
 	}
 
 	console.log('col: ' + v + ' count: ' + position);
-
-	if (position == 15) {
-		$.fn.getMatrixValues();
-	}
 });
