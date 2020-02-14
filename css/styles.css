@@ -112,3 +112,21 @@ div#piano-display {
 	top: 130px;
 	left: 10px;
 }
+
+div#drum-sequencer {
+	position: absolute;
+	top: 170px;
+	left: 10px;
+}
+
+div#drum-io-one {
+	position: absolute;
+	top: 280px;
+	left: 10px;
+}
+
+h2#drum-io-one-txt {
+	position: absolute;
+	top: 280px;
+	left: 200px
+}
